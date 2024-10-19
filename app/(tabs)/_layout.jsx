@@ -36,7 +36,7 @@ export default function TabLayout() {
           title: "Fake Call",
           tabBarIcon: ({ color }) => (
             <Feather name="phone-call" size={24} color={color} />
-          ),
+          ),headerShown: false,
         }}
       />
       <Tabs.Screen
