@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View ,SafeAreaView} from 'react-native';
 import React from 'react';
 
-// import AppMapview from './../Mapview';
+import AppMapview from './../Mapview';
 
 const HomeScreen = () => {
   return (
@@ -9,9 +9,9 @@ const HomeScreen = () => {
       <View style={styles.header}>
         <Text style={styles.headerText}>Safe Chalein</Text>
       </View>
-      {/* <View style={styles.content}>
+      <View style={styles.content}>
         <AppMapview  />
-      </View> */}
+      </View>
     </SafeAreaView>
   );
 };

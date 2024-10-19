@@ -40,14 +40,14 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="Record"
+        name="Recording"
         options={{
           title: "Recordings",
           tabBarIcon: ({ color }) => <Ionicons name="recording-outline" color={color} size={24} />,
         }}
       />
       <Tabs.Screen
-        name="helpline"
+        name="Helpline"
         options={{
           title: "Helpline",
           tabBarIcon: ({ color }) => <Ionicons name="book-sharp" color={color} size={24} />,
