@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import React, { useState, useRef } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, FlatList, Animated } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, FlatList, Animated, SafeAreaView } from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -83,10 +83,8 @@ const LoginPage = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.time}>9:41</Text>
-      </View>
+    <SafeAreaView style={styles.container}>
+     
       
       <FlatList
         ref={flatListRef}
@@ -111,7 +109,7 @@ const LoginPage = () => {
       {renderDotIndicator()}
       
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.loginButton} onPress={() => router.push("(tabs)")}>
+        <TouchableOpacity style={styles.loginButton} onPress={() => router.push("login")}>
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
         
@@ -119,7 +117,7 @@ const LoginPage = () => {
           <Text style={styles.createAccountText}>Create an account</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
