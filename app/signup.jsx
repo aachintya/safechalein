@@ -5,7 +5,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import axios from 'axios'; 
 
 const SignupPage = () => {
-  const [fullName, setFullName] = useState('');
+  const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [agreeToTerms, setAgreeToTerms] = useState(false);
@@ -15,7 +15,7 @@ const SignupPage = () => {
   const handleSignup = async () => {
     try {
       const response = await axios.post('http://10.0.2.2:3000/user/signup', {
-        fullname: fullName,
+        fullname: fullname,
         email,
         password,
       });
@@ -55,8 +55,8 @@ const SignupPage = () => {
               <TextInput
                 style={styles.input}
                 placeholder="Harshit Kumar"
-                value={fullName}
-                onChangeText={setFullName}
+                value={fullname}
+                onChangeText={setFullname}
                 autoCapitalize="words"
               />
 
