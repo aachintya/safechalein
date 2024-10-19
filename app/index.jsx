@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import React, { useState, useRef } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, FlatList, Animated } from 'react-native';
 import {
@@ -110,7 +111,7 @@ const LoginPage = () => {
       {renderDotIndicator()}
       
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={() => router.push("(tabs)")}>
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
         
