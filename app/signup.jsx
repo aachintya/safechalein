@@ -6,8 +6,8 @@ import axios from 'axios';
 
 const SignupPage = () => {
   const [fullname, setFullname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [errorMessage, setErrorMessage] = useState(''); 
   const [successMessage, setSuccessMessage] = useState(''); 
@@ -16,8 +16,8 @@ const SignupPage = () => {
     try {
       const response = await axios.post('http://10.0.2.2:3000/user/signup', {
         fullname: fullname,
-        email,
-        password,
+        email:email,
+        password:password,
       });
       console.log(response.data);
       setSuccessMessage('Account created successfully!'); 
@@ -65,7 +65,7 @@ const SignupPage = () => {
                 style={styles.input}
                 placeholder="hello@example.com"
                 value={email}
-                onChangeText={setEmail}
+                onChangeText={setemail}
                 keyboardType="email-address"
                 autoCapitalize="none"
               />
@@ -75,11 +75,11 @@ const SignupPage = () => {
                 style={styles.input}
                 placeholder="••••••••••••"
                 value={password}
-                onChangeText={setPassword}
+                onChangeText={setpassword}
                 secureTextEntry
               />
 
-              <TouchableOpacity style={styles.signupButton} onPress={handleSignup}>
+              <TouchableOpacity style={styles.signupButton} onPress={handleSignup(onPress)}>
                 <Text style={styles.signupButtonText}>Create Account</Text>
               </TouchableOpacity>
 

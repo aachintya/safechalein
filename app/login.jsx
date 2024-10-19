@@ -4,9 +4,27 @@ import { View, Text, TextInput, TouchableOpacity,Image, StyleSheet, SafeAreaView
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
   const [keepSignedIn, setKeepSignedIn] = useState(false);
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://10.0.2.2:3000/user/login', {
+        
+        email:email,
+        password:password,
+      });
+      console.log(response.data);
+      setSuccessMessage('logged in  successfully!'); 
+      setErrorMessage(''); 
+      router.replace("(tabs)"); 
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(error.response?.data.message || 'An error occurred during login.'); 
+      setSuccessMessage('');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,7 +47,7 @@ const LoginPage = () => {
                 style={styles.input}
                 placeholder="hello@example.com"
                 value={email}
-                onChangeText={setEmail}
+                onChangeText={setemail}
                 keyboardType="email-address"
                 autoCapitalize="none"
               />
@@ -44,7 +62,7 @@ const LoginPage = () => {
                 style={styles.input}
                 placeholder="••••••••••••"
                 value={password}
-                onChangeText={setPassword}
+                onChangeText={setpassword}
                 secureTextEntry
               />
 
@@ -56,7 +74,7 @@ const LoginPage = () => {
                 <Text style={styles.checkboxLabel}>Keep me signed in</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.loginButton} onPress={() => router.replace("(tabs)")}>
+              <TouchableOpacity style={styles.loginButton} onPress={handleLogin(onPress)}>
                 <Text style={styles.loginButtonText}>Login</Text>
               </TouchableOpacity>
 
