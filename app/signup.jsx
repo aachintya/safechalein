@@ -2,12 +2,33 @@ import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import axios from 'axios'; 
 
 const SignupPage = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(''); 
+  const [successMessage, setSuccessMessage] = useState(''); 
+
+  const handleSignup = async () => {
+    try {
+      const response = await axios.post('http://localhost:3000/Signup', {
+        fullname: fullName,
+        email,
+        password,
+      });
+      console.log(response.data);
+      setSuccessMessage('Account created successfully!'); 
+      setErrorMessage(''); 
+      router.replace("(tabs)"); 
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(error.response?.data.message || 'An error occurred during signup.'); 
+      setSuccessMessage('');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -16,12 +37,18 @@ const SignupPage = () => {
         style={styles.keyboardAvoidingView}
       >
         <ScrollView contentContainerStyle={styles.scrollView}>
-       
           <View style={styles.content}>
             <View style={styles.titleContainer}>
               <Text style={styles.title}>Create Account</Text>
               <Text style={styles.subtitle}>Sign up to get started</Text>
             </View>
+
+            {errorMessage ? (
+              <Text style={styles.errorText}>{errorMessage}</Text> 
+            ) : null}
+            {successMessage ? (
+              <Text style={styles.successText}>{successMessage}</Text> 
+            ) : null}
 
             <View style={styles.formContainer}>
               <Text style={styles.label}>Full Name</Text>
@@ -52,8 +79,7 @@ const SignupPage = () => {
                 secureTextEntry
               />
 
-           
-              <TouchableOpacity style={styles.signupButton} onPress={() => router.replace("(tabs)")}>
+              <TouchableOpacity style={styles.signupButton} onPress={handleSignup}>
                 <Text style={styles.signupButtonText}>Create Account</Text>
               </TouchableOpacity>
 
@@ -68,7 +94,7 @@ const SignupPage = () => {
 
         <TouchableOpacity style={styles.footer} onPress={() => router.back()}>
           <Text style={styles.footerText}>Already have an account? </Text>
-            <Text style={styles.loginText}>Log in</Text>
+          <Text style={styles.loginText}>Log in</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -85,14 +111,6 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flexGrow: 1,
-  },
-  header: {
-    paddingTop: hp('2%'),
-    paddingHorizontal: wp('5%'),
-  },
-  time: {
-    fontSize: wp('4%'),
-    fontWeight: 'bold',
   },
   content: {
     flex: 1,
@@ -126,28 +144,6 @@ const styles = StyleSheet.create({
     borderRadius: wp('2%'),
     padding: wp('3%'),
     marginBottom: hp('2%'),
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: hp('2%'),
-  },
-  checkbox: {
-    marginVertical: hp('2%'),
-    width: wp('5%'),
-    height: wp('5%'),
-    borderWidth: 1,
-    borderColor: '#ccc',
-    marginRight: wp('2%'),
-    borderRadius: wp('1%'),
-  },
-  checked: {
-    backgroundColor: '#6B63F6',
-  },
-  checkboxLabel: {
-    fontSize: wp('3.5%'),
-    flex: 1,
-    flexWrap: 'wrap',
   },
   signupButton: {
     backgroundColor: '#6B63F6',
@@ -190,6 +186,16 @@ const styles = StyleSheet.create({
     color: '#6B63F6',
     fontSize: wp('4%'),
     fontWeight: 'bold',
+  },
+  errorText: {
+    color: 'red',
+    textAlign: 'center',
+    marginBottom: hp('2%'),
+  },
+  successText: {
+    color: 'green',
+    textAlign: 'center',
+    marginBottom: hp('2%'),
   },
 });
 

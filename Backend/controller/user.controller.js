@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs"
 
 export const Signup=async (req,res)=>{
     try{
-     const {username,email,password} = req.body;
+     const {fullname,email,password} = req.body;
      const user=await User.findOne({email})
      if(user){
         return res.status(400).json({message:"User already exists"})
@@ -18,7 +18,7 @@ export const Signup=async (req,res)=>{
      await createdUser.save()
      res.status(201).json({message:"user created successfully",user:{
         _id:createdUser.id,
-        username:createdUser.username,
+        fullname:createdUser.fullname,
         email:createdUser.email,
      }})
     } catch(error){

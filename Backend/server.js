@@ -15,7 +15,7 @@ const port= process.env.PORT || 3000;
 
 
 try{
-     mongoose.connect("mongodb+srv://auxin:auxin@cluster0.4seli.mongodb.net/"
+     mongoose.connect("mongodb+srv://auxin:auxin@cluster0.4seli.mongodb.net/safechalein"
     );
     
    console.log("connected to mongodb!")
