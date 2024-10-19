@@ -15,7 +15,7 @@ const carouselData = [
   {
     id: '2',
     image: require("../assets/images/1.png"),
-    title: 'Instant Alerts, Immediate Action',
+    title: 'Instant Alerts, Immediate Actiloon',
     subtitle: 'Get Help in Real-Time, Wherever You Are.',
   },
   {
