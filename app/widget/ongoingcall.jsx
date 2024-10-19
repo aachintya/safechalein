@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, StatusBar } from 'reac
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const IncomingCallScreen = ({ caller, onAccept, onDecline }) => {
+const OngoingCallScreen = ({ caller, onEndCall, onToggleMute, onToggleSpeaker, isMuted, isSpeakerOn }) => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
@@ -20,17 +20,17 @@ const IncomingCallScreen = ({ caller, onAccept, onDecline }) => {
             </View>
           )}
           <Text style={styles.callerName}>{caller.name}</Text>
-          <Text style={styles.callerNumber}>{caller.number}</Text>
-          <Text style={styles.callStatus}>Incoming call</Text>
+          <Text style={styles.callStatus}>Ongoing call</Text>
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.declineButton} onPress={onDecline}>
-            <Text style={styles.buttonIcon}>✕</Text>
-            <Text style={styles.buttonText}>Decline</Text>
+        <View style={styles.ongoingButtonContainer}>
+          <TouchableOpacity style={styles.circleButton} onPress={onToggleMute}>
+            <Text style={styles.buttonIcon}>{isMuted ? '🔇' : '🎤'}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.acceptButton} onPress={onAccept}>
-            <Text style={styles.buttonIcon}>✓</Text>
-            <Text style={styles.buttonText}>Accept</Text>
+          <TouchableOpacity style={styles.circleButton} onPress={onToggleSpeaker}>
+            <Text style={styles.buttonIcon}>{isSpeakerOn ? '🔊' : '🔈'}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.circleButton, styles.endCallButton]} onPress={onEndCall}>
+            <Text style={styles.buttonIcon}>📞</Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>
@@ -77,42 +77,32 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     marginBottom: hp('1%'),
   },
-  callerNumber: {
-    fontSize: wp('4%'),
-    color: '#ffffff',
-    marginBottom: hp('1%'),
-  },
   callStatus: {
     fontSize: wp('4%'),
     color: '#ffffff',
     opacity: 0.8,
   },
-  buttonContainer: {
+  ongoingButtonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
+    marginBottom: hp('5%'),
   },
-  declineButton: {
+  circleButton: {
+    width: wp('15%'),
+    height: wp('15%'),
+    borderRadius: wp('7.5%'),
+    backgroundColor: 'rgba(255,255,255,0.3)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  endCallButton: {
     backgroundColor: '#ff3b30',
-    borderRadius: wp('15%'),
-    padding: wp('5%'),
-    alignItems: 'center',
-  },
-  acceptButton: {
-    backgroundColor: '#34c759',
-    borderRadius: wp('15%'),
-    padding: wp('5%'),
-    alignItems: 'center',
   },
   buttonIcon: {
-    fontSize: wp('10%'),
-    color: '#ffffff',
-    marginBottom: hp('1%'),
-  },
-  buttonText: {
-    fontSize: wp('4%'),
+    fontSize: wp('8%'),
     color: '#ffffff',
   },
 });
 
-export default IncomingCallScreen;
+export default OngoingCallScreen;
