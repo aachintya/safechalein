@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const sidebar = () => {
+const Recording = () => {
   return (
     <View>
-      <Text>sidebar</Text>
+      <Text>Recording</Text>
     </View>
   )
 }
 
-export default sidebar
+export default Recording
 
 const styles = StyleSheet.create({})

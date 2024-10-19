@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const sidebar = () => {
+const FakeCall = () => {
   return (
     <View>
-      <Text>sidebar</Text>
+      <Text>FakeCall</Text>
     </View>
   )
 }
 
-export default sidebar
+export default FakeCall
 
 const styles = StyleSheet.create({})

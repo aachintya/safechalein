@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const sidebar = () => {
+const Helpline = () => {
   return (
     <View>
-      <Text>sidebar</Text>
+      <Text>Helpline</Text>
     </View>
   )
 }
 
-export default sidebar
+export default Helpline
 
 const styles = StyleSheet.create({})

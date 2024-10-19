@@ -28,6 +28,8 @@ export default function LoginScreen() {
     console.log("Login attempted with:", username, password);
     Alert.alert("Login", "Login attempted with: " + username + " " + password);
     // If login is successful, navigate to the main app
+    router.push('/(tabs)')
+   
   };
 
   return (
