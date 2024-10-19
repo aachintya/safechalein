@@ -1,52 +1,57 @@
-import { StyleSheet, Text, View ,SafeAreaView} from 'react-native';
 import React from 'react';
-
+import { StyleSheet, Text, View, SafeAreaView, Image, StatusBar } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import AppMapview from './../Mapview';
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Safe Chalein</Text>
-      </View>
-      <View style={styles.content}>
-        <AppMapview  />
-      </View>
-    </SafeAreaView>
+    <>
+      <StatusBar backgroundColor="#ccc" barStyle="dark-content" />
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <Image source={require("../../assets/images/logo-3.png")} style={styles.logo} />
+          </View>
+          <View style={styles.content}>
+            <AppMapview />
+          </View>
+        </View>
+      </SafeAreaView>
+    </>
   );
 };
 
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#ccc',
+  },
   container: {
     flex: 1,
-   
-    
+    backgroundColor: '#fff',
   },
   header: {
-    height: 60,
+    height: hp('8%'),
     width: '100%',
-    marginTop:30 ,
-    backgroundColor: '#007bff',
+    backgroundColor: '#ccc',
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
+  
+   
   },
   headerText: {
     color: '#fff',
-    fontSize: 24,
+    fontSize: wp('6%'),
     fontWeight: 'bold',
   },
   content: {
     flex: 1,
   },
-  
+  logo: {
+    width: wp('25%'),
+    height: wp('25%'),
+    resizeMode: 'contain',
+  },
 });
