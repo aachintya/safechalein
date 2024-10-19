@@ -14,13 +14,15 @@ export const UserLocationProvider = ({ children }) => {
         console.log('Permission to access location was denied');
         return;
       }
-
+  
       const userLocation = await Location.getCurrentPositionAsync({});
+      console.log('Fetched location:', userLocation.coords);
       setLocation(userLocation.coords);
     };
-
+  
     fetchLocation();
   }, []);
+  
 
   return (
     <UserLocationContext.Provider value={{ location }}>
