@@ -8,8 +8,8 @@ export default function AppMapview() {
   const { location, errorMsg } = useContext(UserLocationContext);
 
   const defaultRegion = {
-    latitude: 26.8467, // Latitude for Lucknow, UP
-    longitude: 80.9462, // Longitude for Lucknow, UP
+    latitude: 26.8467, 
+    longitude: 80.9462, 
     latitudeDelta: 2.0,
     longitudeDelta: 2.0,
   };

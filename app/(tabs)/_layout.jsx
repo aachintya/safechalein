@@ -36,7 +36,7 @@ export default function TabLayout() {
           title: "Fake Call",
           tabBarIcon: ({ color }) => (
             <Feather name="phone-call" size={24} color={color} />
-          ),
+          ),headerShown: false,
         }}
       />
       <Tabs.Screen
@@ -52,14 +52,7 @@ export default function TabLayout() {
           title: "Helpline",
           tabBarIcon: ({ color }) => <Ionicons name="book-sharp" color={color} size={24} />,
         }}
-          />
-        <Tabs.Screen
-          name="History"
-          options={{
-            title: "History",
-            tabBarIcon: ({ color }) => <Ionicons name="time-outline" color={color} size={24} />,
-          }}
-        />
+      />
     </Tabs>
   );
 }
