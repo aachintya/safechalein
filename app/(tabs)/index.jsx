@@ -1,10 +1,23 @@
 import React from 'react';
-import { StyleSheet, View, SafeAreaView, Image, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Image, StatusBar, TouchableOpacity, Alert } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import AppMapview from './../Mapview';
 import { Ionicons } from '@expo/vector-icons';
 
 const HomeScreen = () => {
+  const handleSOSPress = () => {
+    Alert.alert('SOS', 'Are you sure you want to send an SOS?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Yes',
+        onPress: () => console.log('SOS button pressed'),
+      },
+    ]);
+  };
+
   return (
     <>
       <StatusBar backgroundColor="#ccc" barStyle="dark-content" />
@@ -18,6 +31,9 @@ const HomeScreen = () => {
           <View style={styles.content}>
             <AppMapview />
           </View>
+          <TouchableOpacity style={styles.sosButton} onPress={handleSOSPress}>
+            <Text style={styles.sosButtonText}>SOS</Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </>
@@ -29,8 +45,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#ccc',
-    marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: '#fff',
   },
   container: {
     flex: 1,
@@ -40,11 +55,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: hp('8%'),
     width: '100%',
-    backgroundColor: '#ccc',
-    justifyContent: 'space-between',
+    backgroundColor: '#fff',
+    justifyContent: 'center',
     alignItems: 'center',
-    gap:wp('2%'),
-    paddingHorizontal: wp('3%'),
+    elevation: 4,
+  
   },
   headerText: {
     color: '#fff',
@@ -61,5 +76,29 @@ const styles = StyleSheet.create({
     width: wp('25%'),
     height: wp('25%'),
     resizeMode: 'contain',
+  },
+  sosButton: {
+    position: 'absolute',
+    right: wp('5%'),
+    bottom: hp('3%'),
+    backgroundColor: '#DB2B39',
+    borderRadius: wp('10%'),
+    width: wp('20%'),
+    height: wp('20%'),
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  sosButtonText: {
+    color: 'white',
+    fontSize: wp('5%'),
+    fontWeight: 'bold',
   },
 });
