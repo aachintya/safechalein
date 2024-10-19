@@ -79,7 +79,7 @@ const SignupPage = () => {
                 secureTextEntry
               />
 
-              <TouchableOpacity style={styles.signupButton} onPress={handleSignup(onPress)}>
+              <TouchableOpacity style={styles.signupButton} onPress={handleSignup}>
                 <Text style={styles.signupButtonText}>Create Account</Text>
               </TouchableOpacity>
 
